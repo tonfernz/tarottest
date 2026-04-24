@@ -41,7 +41,7 @@ export function ReadingClient() {
   }
 
   return (
-    <section className="flex flex-1 flex-col items-center justify-center gap-8 py-6">
+    <section className="flex flex-1 flex-col items-center justify-center gap-6 py-5 sm:gap-8 sm:py-6">
       <motion.div
         className="max-w-3xl text-center"
         initial={{ opacity: 0, y: 14 }}
@@ -49,13 +49,13 @@ export function ReadingClient() {
         transition={{ duration: 0.45 }}
       >
         <p className="text-sm font-semibold text-moss">คำทำนาย 3 ใบ</p>
-        <h1 className="mt-2 text-3xl font-bold text-cacao sm:text-4xl">ค่อย ๆ เปิดไพ่ทีละใบ</h1>
+        <h1 className="mt-2 text-2xl font-bold text-cacao sm:text-4xl">ค่อย ๆ เปิดไพ่ทีละใบ</h1>
         <p className="mt-3 text-sm leading-7 text-bark/70 sm:text-base">
           แตะไพ่เพื่อเปิดหน้าไพ่ เมื่อเปิดแล้วแตะอีกครั้งเพื่ออ่านคำทำนายด้านการงาน การเงิน ความรัก และสุขภาพ
         </p>
       </motion.div>
 
-      <div className="grid w-full max-w-4xl grid-cols-1 gap-6 sm:grid-cols-3">
+      <div className="grid w-full max-w-[26rem] grid-cols-3 gap-2.5 sm:max-w-4xl sm:gap-6">
         {cards.map((card, index) => (
           <TarotCard
             key={card.id}

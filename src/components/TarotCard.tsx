@@ -36,10 +36,10 @@ export function TarotCard({
       whileHover={disabled ? undefined : { y: -5, scale: selected ? 1.055 : 1.025 }}
       whileTap={disabled ? undefined : { scale: 0.98 }}
       transition={{ duration: 0.32, delay: Math.min(index * 0.025, 0.18) }}
-      className="group flex w-full min-w-0 flex-col items-center gap-3 rounded-[1.35rem] outline-none focus-visible:ring-4 focus-visible:ring-moss/30 disabled:cursor-not-allowed"
+      className="group flex w-full min-w-0 flex-col items-center gap-2 rounded-[1.35rem] outline-none focus-visible:ring-4 focus-visible:ring-moss/30 disabled:cursor-not-allowed sm:gap-3"
     >
       <span
-        className={`relative block aspect-[11/19] w-full overflow-hidden rounded-[1.25rem] border bg-linen shadow-soft transition duration-300 ${
+        className={`relative block aspect-[11/19] w-full overflow-hidden rounded-[0.9rem] border bg-linen shadow-soft transition duration-300 sm:rounded-[1.25rem] ${
           selected ? "border-moss shadow-glow" : "border-white/70 group-hover:border-moss/40"
         }`}
         style={{ perspective: "1200px" }}
@@ -72,7 +72,7 @@ export function TarotCard({
       </span>
 
       {showName ? (
-        <span className="min-h-12 text-center text-sm font-semibold leading-6 text-bark sm:text-base">
+        <span className="min-h-10 text-center text-xs font-semibold leading-5 text-bark sm:min-h-12 sm:text-base sm:leading-6">
           {card.name_th}
           <span className="block text-xs font-normal text-bark/60">{card.name_en}</span>
         </span>

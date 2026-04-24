@@ -55,17 +55,17 @@ export function ShuffleDeck() {
   }
 
   return (
-    <section className="flex flex-1 flex-col items-center justify-center gap-8 py-6">
+    <section className="flex flex-1 flex-col items-center justify-center gap-6 py-5 sm:gap-8 sm:py-6">
       <div className="text-center">
         <p className="text-sm font-semibold text-moss">เลือกไพ่ 3 ใบ</p>
-        <h1 className="mt-2 text-3xl font-bold text-cacao sm:text-4xl">ตั้งใจถาม แล้วเลือกไพ่ที่ดึงดูดใจ</h1>
+        <h1 className="mt-2 text-2xl font-bold text-cacao sm:text-4xl">ตั้งใจถาม แล้วเลือกไพ่ที่ดึงดูดใจ</h1>
       </div>
 
       <AnimatePresence mode="wait">
         {isShuffling ? (
           <motion.div
             key="shuffling"
-            className="relative h-[22rem] w-52 sm:h-[26rem] sm:w-60"
+            className="relative h-[18rem] w-40 sm:h-[26rem] sm:w-60"
             exit={{ opacity: 0, scale: 0.94 }}
             transition={{ duration: 0.35 }}
           >
@@ -99,18 +99,18 @@ export function ShuffleDeck() {
             transition={{ duration: 0.35 }}
           >
             <SelectedCards selectedCount={selectedCount} />
-            <div className="mt-8 grid w-full max-w-4xl items-center gap-8 lg:grid-cols-[1fr_1.05fr]">
-              <div className="flex flex-col items-center gap-5">
+            <div className="mt-6 grid w-full max-w-4xl items-center gap-6 sm:mt-8 sm:gap-8 lg:grid-cols-[1fr_1.05fr]">
+              <div className="flex flex-col items-center gap-4 sm:gap-5">
                 <motion.button
                   type="button"
                   onClick={drawCard}
                   disabled={!nextCard || selectedCount >= SELECTED_CARD_LIMIT}
                   whileHover={selectedCount < SELECTED_CARD_LIMIT ? { y: -4, scale: 1.015 } : undefined}
                   whileTap={selectedCount < SELECTED_CARD_LIMIT ? { scale: 0.98 } : undefined}
-                  className="group relative h-[24rem] w-56 outline-none disabled:cursor-not-allowed sm:h-[28rem] sm:w-64"
+                  className="group relative h-[18.5rem] w-44 outline-none disabled:cursor-not-allowed sm:h-[28rem] sm:w-64"
                   aria-label="เลือกไพ่จากกอง"
                 >
-                  <span className="absolute -inset-8 rounded-full bg-moss/15 blur-3xl transition group-hover:bg-moss/20" />
+                  <span className="absolute -inset-5 rounded-full bg-moss/15 blur-3xl transition group-hover:bg-moss/20 sm:-inset-8" />
                   {deckCards.map((_, index) => {
                     const depth = deckCards.length - index;
 
@@ -150,14 +150,14 @@ export function ShuffleDeck() {
                   </AnimatePresence>
                 </motion.button>
 
-                <p className="max-w-xs text-center text-sm leading-7 text-bark/70">
+                <p className="max-w-xs text-center text-xs leading-6 text-bark/70 sm:text-sm sm:leading-7">
                   แตะกองไพ่เพื่อเลือกทีละใบ ระบบจะเก็บไพ่ที่เลือกไว้โดยไม่เปิดหน้าจนกว่าจะถึงหน้าคำทำนาย
                 </p>
               </div>
 
-              <div className="rounded-[1.5rem] border border-white/75 bg-white/35 p-5 shadow-soft">
+              <div className="rounded-[1.5rem] border border-white/75 bg-white/35 p-4 shadow-soft sm:p-5">
                 <p className="text-sm font-semibold text-moss">ไพ่ที่เลือก</p>
-                <div className="mt-4 grid grid-cols-3 gap-3 sm:gap-4">
+                <div className="mt-4 grid grid-cols-3 gap-2.5 sm:gap-4">
                   {Array.from({ length: SELECTED_CARD_LIMIT }).map((_, index) => {
                     const isSelected = index < selectedCount;
 
