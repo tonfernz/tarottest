@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #f8f1e6;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(196, 204, 177, 0.46), transparent 34rem),
+    linear-gradient(135deg, #f8f1e6 0%, #efe2d0 52%, #ddc7aa 100%);
+  color: #3f3027;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+}
+
+.card-face {
+  backface-visibility: hidden;
+}
+
+.card-back-face {
+  transform: rotateY(180deg);
+}
