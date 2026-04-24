@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { withBasePath } from "@/lib/tarot";
 import type { TarotCardData } from "@/types/tarot";
 
 const meaningSections = [
@@ -47,7 +48,7 @@ export function CardDetailModal({ card, onClose }: CardDetailModalProps) {
               >
                 <div className="relative aspect-[11/19] overflow-hidden rounded-[1.25rem] border border-white/80 bg-linen shadow-soft">
                   <Image
-                    src={card.image}
+                    src={withBasePath(card.image)}
                     alt={card.name_th}
                     fill
                     sizes="(max-width: 768px) 176px, 208px"

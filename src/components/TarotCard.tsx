@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { CARD_BACK_IMAGE } from "@/lib/tarot";
+import { CARD_BACK_IMAGE, withBasePath } from "@/lib/tarot";
 import type { TarotCardData } from "@/types/tarot";
 
 type TarotCardProps = {
@@ -51,7 +51,7 @@ export function TarotCard({
         >
           <span className="card-face absolute inset-0">
             <Image
-              src={CARD_BACK_IMAGE}
+              src={withBasePath(CARD_BACK_IMAGE)}
               alt=""
               fill
               sizes="(max-width: 768px) 30vw, 150px"
@@ -61,7 +61,7 @@ export function TarotCard({
           </span>
           <span className="card-face card-back-face absolute inset-0">
             <Image
-              src={card.image}
+              src={withBasePath(card.image)}
               alt={card.name_th}
               fill
               sizes="(max-width: 768px) 30vw, 150px"

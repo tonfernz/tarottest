@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { CARD_BACK_IMAGE, SELECTED_CARD_LIMIT, allTarotCards, shuffleArray } from "@/lib/tarot";
+import { CARD_BACK_IMAGE, SELECTED_CARD_LIMIT, allTarotCards, shuffleArray, withBasePath } from "@/lib/tarot";
 import { SelectedCards } from "@/components/SelectedCards";
 import type { TarotCardData } from "@/types/tarot";
 
@@ -86,7 +86,7 @@ export function ShuffleDeck() {
                 }}
                 style={{ zIndex: deckCards.length - index }}
               >
-                <Image src={CARD_BACK_IMAGE} alt="" fill sizes="240px" className="object-contain" priority />
+                <Image src={withBasePath(CARD_BACK_IMAGE)} alt="" fill sizes="240px" className="object-contain" priority />
               </motion.div>
             ))}
           </motion.div>
@@ -128,7 +128,7 @@ export function ShuffleDeck() {
                         transition={{ duration: 0.34, delay: index * 0.02 }}
                         style={{ zIndex: depth }}
                       >
-                        <Image src={CARD_BACK_IMAGE} alt="" fill sizes="256px" className="object-contain" priority={index > 5} />
+                        <Image src={withBasePath(CARD_BACK_IMAGE)} alt="" fill sizes="256px" className="object-contain" priority={index > 5} />
                       </motion.span>
                     );
                   })}
@@ -144,7 +144,7 @@ export function ShuffleDeck() {
                         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                         style={{ zIndex: deckCards.length + 1, pointerEvents: "none" }}
                       >
-                        <Image src={CARD_BACK_IMAGE} alt="" fill sizes="256px" className="object-contain" />
+                        <Image src={withBasePath(CARD_BACK_IMAGE)} alt="" fill sizes="256px" className="object-contain" />
                       </motion.span>
                     ) : null}
                   </AnimatePresence>
@@ -173,7 +173,7 @@ export function ShuffleDeck() {
                         className="relative aspect-[11/19] overflow-hidden rounded-[1rem] border border-white/80 bg-linen shadow-sm"
                       >
                         {isSelected ? (
-                          <Image src={CARD_BACK_IMAGE} alt="" fill sizes="120px" className="object-contain" />
+                          <Image src={withBasePath(CARD_BACK_IMAGE)} alt="" fill sizes="120px" className="object-contain" />
                         ) : (
                           <span className="grid h-full place-items-center text-2xl font-semibold text-bark/20">{index + 1}</span>
                         )}

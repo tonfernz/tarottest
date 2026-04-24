@@ -16,3 +16,13 @@ Open `http://localhost:3000`.
 ```bash
 npm run build
 ```
+
+## GitHub Pages
+
+This project is configured for GitHub Pages at:
+
+```text
+https://tonfernz.github.io/tarottest/
+```
+
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which exports the Next.js app as static files.

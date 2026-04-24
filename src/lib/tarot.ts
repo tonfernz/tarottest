@@ -3,8 +3,17 @@ import type { TarotCardData } from "@/types/tarot";
 
 export const CARD_BACK_IMAGE = "/cards/back.png";
 export const SELECTED_CARD_LIMIT = 3;
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const allTarotCards = tarotCards as TarotCardData[];
+
+export function withBasePath(path: string): string {
+  if (!BASE_PATH || path.startsWith("http")) {
+    return path;
+  }
+
+  return `${BASE_PATH}${path.startsWith("/") ? path : `/${path}`}`;
+}
 
 export function shuffleArray<T>(items: T[]): T[] {
   const shuffled = [...items];
