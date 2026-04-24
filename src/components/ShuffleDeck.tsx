@@ -65,7 +65,7 @@ export function ShuffleDeck() {
         {isShuffling ? (
           <motion.div
             key="shuffling"
-            className="relative h-[14.5rem] w-[8.4rem] sm:h-[26rem] sm:w-60"
+            className="relative h-[13.25rem] w-[7.75rem] sm:h-[26rem] sm:w-60"
             exit={{ opacity: 0, scale: 0.94 }}
             transition={{ duration: 0.35 }}
           >
@@ -99,15 +99,15 @@ export function ShuffleDeck() {
             transition={{ duration: 0.35 }}
           >
             <SelectedCards selectedCount={selectedCount} />
-            <div className="mt-3 grid w-full max-w-4xl items-center gap-3 sm:mt-8 sm:gap-8 lg:grid-cols-[1fr_1.05fr]">
-              <div className="flex flex-col items-center gap-2 sm:gap-5">
+            <div className="mx-auto mt-3 grid w-full max-w-[18rem] items-center justify-items-center gap-3 sm:mt-8 sm:max-w-4xl sm:gap-8 lg:grid-cols-[1fr_1.05fr]">
+              <div className="flex w-full flex-col items-center gap-2 sm:gap-5">
                 <motion.button
                   type="button"
                   onClick={drawCard}
                   disabled={!nextCard || selectedCount >= SELECTED_CARD_LIMIT}
                   whileHover={selectedCount < SELECTED_CARD_LIMIT ? { y: -4, scale: 1.015 } : undefined}
                   whileTap={selectedCount < SELECTED_CARD_LIMIT ? { scale: 0.98 } : undefined}
-                  className="group relative h-[14rem] w-[8.2rem] outline-none disabled:cursor-not-allowed sm:h-[28rem] sm:w-64"
+                  className="group relative h-[12.75rem] w-[7.5rem] outline-none disabled:cursor-not-allowed sm:h-[28rem] sm:w-64"
                   aria-label="เลือกไพ่จากกอง"
                 >
                   <span className="absolute -inset-3 rounded-full bg-moss/15 blur-3xl transition group-hover:bg-moss/20 sm:-inset-8" />
@@ -121,9 +121,9 @@ export function ShuffleDeck() {
                         initial={{ opacity: 0, y: 18, rotate: 0 }}
                         animate={{
                           opacity: selectedCount >= SELECTED_CARD_LIMIT && index < 3 ? 0 : 1,
-                          x: (index - 4) * 1.4,
-                          y: index * -1.5,
-                          rotate: (index - 4) * 0.75
+                          x: (index - 4) * 0.9,
+                          y: index * -1,
+                          rotate: (index - 4) * 0.45
                         }}
                         transition={{ duration: 0.34, delay: index * 0.02 }}
                         style={{ zIndex: depth }}
@@ -139,7 +139,7 @@ export function ShuffleDeck() {
                         key={drawAnimationKey}
                         className="absolute inset-0 overflow-hidden rounded-[1.55rem] border border-moss/50 bg-linen shadow-glow"
                         initial={{ opacity: 0, x: 0, y: 0, rotate: 0, scale: 1 }}
-                        animate={{ opacity: [0, 0.95, 0], x: [0, 96, 132], y: [0, -52, -20], rotate: [0, 12, 8], scale: [1, 0.92, 0.86] }}
+                        animate={{ opacity: [0, 0.9, 0], x: [0, 44, 58], y: [0, -34, -18], rotate: [0, 7, 5], scale: [1, 0.88, 0.82] }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                         style={{ zIndex: deckCards.length + 1, pointerEvents: "none" }}
@@ -155,7 +155,7 @@ export function ShuffleDeck() {
                 </p>
               </div>
 
-              <div className="mx-auto w-full max-w-[16rem] rounded-[1.25rem] border border-white/75 bg-white/35 p-3 shadow-soft sm:max-w-none sm:rounded-[1.5rem] sm:p-5">
+              <div className="mx-auto w-full max-w-[14.5rem] rounded-[1.25rem] border border-white/75 bg-white/35 p-3 shadow-soft sm:max-w-none sm:rounded-[1.5rem] sm:p-5">
                 <p className="text-center text-xs font-semibold text-moss sm:text-left sm:text-sm">ไพ่ที่เลือก</p>
                 <div className="mt-2 grid grid-cols-3 gap-2 sm:mt-4 sm:gap-4">
                   {Array.from({ length: SELECTED_CARD_LIMIT }).map((_, index) => {
