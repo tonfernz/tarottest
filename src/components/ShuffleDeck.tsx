@@ -55,17 +55,17 @@ export function ShuffleDeck() {
   }
 
   return (
-    <section className="flex flex-1 flex-col items-center justify-center gap-6 py-5 sm:gap-8 sm:py-6">
+    <section className="flex flex-1 flex-col items-center justify-center gap-3 py-2 sm:gap-8 sm:py-6">
       <div className="text-center">
-        <p className="text-sm font-semibold text-moss">เลือกไพ่ 3 ใบ</p>
-        <h1 className="mt-2 text-2xl font-bold text-cacao sm:text-4xl">ตั้งใจถาม แล้วเลือกไพ่ที่ดึงดูดใจ</h1>
+        <p className="text-xs font-semibold text-moss sm:text-sm">เลือกไพ่ 3 ใบ</p>
+        <h1 className="mt-1 text-xl font-bold text-cacao sm:mt-2 sm:text-4xl">ตั้งใจถาม แล้วเลือกไพ่ที่ดึงดูดใจ</h1>
       </div>
 
       <AnimatePresence mode="wait">
         {isShuffling ? (
           <motion.div
             key="shuffling"
-            className="relative h-[18rem] w-40 sm:h-[26rem] sm:w-60"
+            className="relative h-[14.5rem] w-[8.4rem] sm:h-[26rem] sm:w-60"
             exit={{ opacity: 0, scale: 0.94 }}
             transition={{ duration: 0.35 }}
           >
@@ -99,18 +99,18 @@ export function ShuffleDeck() {
             transition={{ duration: 0.35 }}
           >
             <SelectedCards selectedCount={selectedCount} />
-            <div className="mt-6 grid w-full max-w-4xl items-center gap-6 sm:mt-8 sm:gap-8 lg:grid-cols-[1fr_1.05fr]">
-              <div className="flex flex-col items-center gap-4 sm:gap-5">
+            <div className="mt-3 grid w-full max-w-4xl items-center gap-3 sm:mt-8 sm:gap-8 lg:grid-cols-[1fr_1.05fr]">
+              <div className="flex flex-col items-center gap-2 sm:gap-5">
                 <motion.button
                   type="button"
                   onClick={drawCard}
                   disabled={!nextCard || selectedCount >= SELECTED_CARD_LIMIT}
                   whileHover={selectedCount < SELECTED_CARD_LIMIT ? { y: -4, scale: 1.015 } : undefined}
                   whileTap={selectedCount < SELECTED_CARD_LIMIT ? { scale: 0.98 } : undefined}
-                  className="group relative h-[18.5rem] w-44 outline-none disabled:cursor-not-allowed sm:h-[28rem] sm:w-64"
+                  className="group relative h-[14rem] w-[8.2rem] outline-none disabled:cursor-not-allowed sm:h-[28rem] sm:w-64"
                   aria-label="เลือกไพ่จากกอง"
                 >
-                  <span className="absolute -inset-5 rounded-full bg-moss/15 blur-3xl transition group-hover:bg-moss/20 sm:-inset-8" />
+                  <span className="absolute -inset-3 rounded-full bg-moss/15 blur-3xl transition group-hover:bg-moss/20 sm:-inset-8" />
                   {deckCards.map((_, index) => {
                     const depth = deckCards.length - index;
 
@@ -150,14 +150,14 @@ export function ShuffleDeck() {
                   </AnimatePresence>
                 </motion.button>
 
-                <p className="max-w-xs text-center text-xs leading-6 text-bark/70 sm:text-sm sm:leading-7">
+                <p className="hidden max-w-xs text-center text-xs leading-6 text-bark/70 sm:block sm:text-sm sm:leading-7">
                   แตะกองไพ่เพื่อเลือกทีละใบ ระบบจะเก็บไพ่ที่เลือกไว้โดยไม่เปิดหน้าจนกว่าจะถึงหน้าคำทำนาย
                 </p>
               </div>
 
-              <div className="rounded-[1.5rem] border border-white/75 bg-white/35 p-4 shadow-soft sm:p-5">
-                <p className="text-sm font-semibold text-moss">ไพ่ที่เลือก</p>
-                <div className="mt-4 grid grid-cols-3 gap-2.5 sm:gap-4">
+              <div className="mx-auto w-full max-w-[16rem] rounded-[1.25rem] border border-white/75 bg-white/35 p-3 shadow-soft sm:max-w-none sm:rounded-[1.5rem] sm:p-5">
+                <p className="text-center text-xs font-semibold text-moss sm:text-left sm:text-sm">ไพ่ที่เลือก</p>
+                <div className="mt-2 grid grid-cols-3 gap-2 sm:mt-4 sm:gap-4">
                   {Array.from({ length: SELECTED_CARD_LIMIT }).map((_, index) => {
                     const isSelected = index < selectedCount;
 
@@ -170,12 +170,12 @@ export function ShuffleDeck() {
                           y: 0,
                           scale: isSelected ? 1 : 0.96
                         }}
-                        className="relative aspect-[11/19] overflow-hidden rounded-[1rem] border border-white/80 bg-linen shadow-sm"
+                        className="relative aspect-[11/19] overflow-hidden rounded-[0.75rem] border border-white/80 bg-linen shadow-sm sm:rounded-[1rem]"
                       >
                         {isSelected ? (
                           <Image src={withBasePath(CARD_BACK_IMAGE)} alt="" fill sizes="120px" className="object-contain" />
                         ) : (
-                          <span className="grid h-full place-items-center text-2xl font-semibold text-bark/20">{index + 1}</span>
+                          <span className="grid h-full place-items-center text-lg font-semibold text-bark/20 sm:text-2xl">{index + 1}</span>
                         )}
                       </motion.div>
                     );
@@ -197,7 +197,7 @@ export function ShuffleDeck() {
             exit={{ opacity: 0, y: 12 }}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="rounded-full bg-bark px-8 py-3 text-base font-bold text-cream shadow-soft transition hover:bg-cacao focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-moss/35"
+            className="rounded-full bg-bark px-6 py-2.5 text-sm font-bold text-cream shadow-soft transition hover:bg-cacao focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-moss/35 sm:px-8 sm:py-3 sm:text-base"
           >
             เปิดคำทำนาย
           </motion.button>
