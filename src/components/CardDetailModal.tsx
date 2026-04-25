@@ -28,7 +28,7 @@ export function CardDetailModal({ card, onClose }: CardDetailModalProps) {
     <AnimatePresence>
       {card ? (
         <motion.div
-          className="fixed inset-0 z-50 flex items-end justify-center bg-cacao/45 px-0 backdrop-blur-sm sm:px-4 sm:py-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-cacao/45 px-3 py-4 backdrop-blur-sm sm:px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -39,12 +39,12 @@ export function CardDetailModal({ card, onClose }: CardDetailModalProps) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="card-detail-title"
-            initial={{ opacity: 0, y: 80 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 48 }}
+            initial={{ opacity: 0, y: 28, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 24, scale: 0.98 }}
             transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
             onClick={(event) => event.stopPropagation()}
-            className="relative max-h-[92dvh] w-full max-w-4xl overflow-y-auto rounded-t-[2rem] border border-white/70 bg-pearl p-5 shadow-soft sm:max-h-[88vh] sm:rounded-[1.8rem] sm:p-7"
+            className="relative max-h-[88dvh] w-full max-w-4xl overflow-y-auto rounded-[1.8rem] border border-white/70 bg-pearl p-5 shadow-soft sm:p-7"
           >
             <div className="sticky top-0 z-20 -mx-5 -mt-5 flex items-center justify-center bg-pearl/95 px-5 pb-3 pt-4 backdrop-blur sm:-mx-7 sm:-mt-7 sm:px-7">
               <span className="h-1 w-12 rounded-full bg-bark/20" />
@@ -59,19 +59,19 @@ export function CardDetailModal({ card, onClose }: CardDetailModalProps) {
             </div>
 
             <motion.div
-              className="grid grid-cols-[8rem_1fr] items-start gap-4 sm:grid-cols-[11rem_1fr] sm:gap-6"
+              className="grid grid-cols-[6.8rem_1fr] items-start gap-4 sm:grid-cols-[9.5rem_1fr] sm:gap-6"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.32, delay: 0.08 }}
             >
               <div>
-                <div className="w-full">
-                  <div className="relative aspect-[11/19] overflow-hidden rounded-[1.15rem] shadow-soft">
+                <div className="w-full pt-1">
+                  <div className="relative aspect-[11/19] overflow-hidden rounded-[1.05rem]">
                     <Image
                       src={withBasePath(card.image)}
                       alt={card.name_th}
                       fill
-                      sizes="(max-width: 640px) 128px, 176px"
+                      sizes="(max-width: 640px) 109px, 152px"
                       className="object-contain"
                       priority
                     />

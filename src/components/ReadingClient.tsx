@@ -72,7 +72,10 @@ export function ReadingClient() {
         ))}
       </div>
 
-      <Link href="/shuffle" className="text-center text-sm font-semibold text-bark/65 transition hover:text-bark">
+      <Link
+        href="/shuffle"
+        className="mx-auto rounded-full border border-white/75 bg-pearl/75 px-6 py-3 text-center text-sm font-bold text-bark/70 shadow-sm transition hover:bg-white hover:text-bark focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-moss/25"
+      >
         สับไพ่ใหม่
       </Link>
 
