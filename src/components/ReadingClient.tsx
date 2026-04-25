@@ -65,6 +65,7 @@ export function ReadingClient() {
             card={card}
             faceUp={revealedIds.includes(card.id)}
             showName={revealedIds.includes(card.id)}
+            labelMode="english-only"
             index={index}
             onClick={() => handleCardClick(card)}
           />

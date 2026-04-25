@@ -59,19 +59,19 @@ export function CardDetailModal({ card, onClose }: CardDetailModalProps) {
             </div>
 
             <motion.div
-              className="grid gap-5 md:grid-cols-[1fr_12rem] md:items-start md:gap-7"
+              className="grid grid-cols-[8rem_1fr] items-start gap-4 sm:grid-cols-[11rem_1fr] sm:gap-6"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.32, delay: 0.08 }}
             >
-              <div className="md:order-2">
-                <div className="mx-auto w-32 sm:w-44 md:w-full">
+              <div>
+                <div className="w-full">
                   <div className="relative aspect-[11/19] overflow-hidden rounded-[1.15rem] shadow-soft">
                     <Image
                       src={withBasePath(card.image)}
                       alt={card.name_th}
                       fill
-                      sizes="(max-width: 640px) 128px, (max-width: 768px) 176px, 192px"
+                      sizes="(max-width: 640px) 128px, 176px"
                       className="object-contain"
                       priority
                     />
@@ -79,12 +79,12 @@ export function CardDetailModal({ card, onClose }: CardDetailModalProps) {
                 </div>
               </div>
 
-              <div className="md:order-1">
+              <div>
                 <p className="text-sm font-bold text-olive">🌿 คำทำนายไพ่</p>
-                <h2 id="card-detail-title" className="mt-2 text-2xl font-bold text-cacao sm:text-4xl">
-                  {card.name_th}
+                <h2 id="card-detail-title" className="mt-2 text-3xl font-bold leading-tight text-cacao sm:text-5xl">
+                  {card.name_en}
                 </h2>
-                <p className="mt-1 text-sm text-bark/60 sm:text-base">{card.name_en}</p>
+                <p className="mt-1 text-sm font-semibold text-bark/60 sm:text-base">{card.name_th}</p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
                   {card.keywords.slice(0, 5).map((keyword) => (

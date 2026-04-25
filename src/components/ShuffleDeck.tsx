@@ -70,27 +70,27 @@ export function ShuffleDeck() {
         {isShuffling ? (
           <motion.div
             key="shuffling"
-            className="relative mx-auto mt-1 h-[15rem] w-[8.7rem] sm:h-[25rem] sm:w-56"
+            className="relative mx-auto mt-1 h-[13.5rem] w-[7.85rem] sm:h-[22.5rem] sm:w-[12.6rem]"
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.35 }}
           >
-            <div className="absolute -inset-10 rounded-full bg-sand/20 blur-3xl" />
+            <div className="absolute -inset-8 rounded-full bg-sand/15 blur-3xl" />
             {deckCards.map((_, index) => (
               <motion.div
                 key={index}
-                className="absolute inset-0 overflow-hidden rounded-[1.35rem] border border-white/80 bg-blush shadow-soft"
+                className="absolute inset-0 overflow-hidden rounded-[1.2rem] border border-white/80 bg-blush sm:rounded-[1.35rem]"
                 animate={{
-                  scaleY: [1, 0.985, 1],
-                  x: [0, index % 2 === 0 ? -18 : 18, 0],
-                  y: [0, index % 2 === 0 ? -5 : 4, 0],
-                  rotate: [0, index % 2 === 0 ? -6 : 6, 0]
+                  scaleY: [1, 0.99, 1],
+                  x: [0, index % 2 === 0 ? -10 : 10, 0],
+                  y: [0, index % 2 === 0 ? -3 : 3, 0],
+                  rotate: [0, index % 2 === 0 ? -3.5 : 3.5, 0]
                 }}
                 transition={{
-                  duration: 0.55,
+                  duration: 0.5,
                   repeat: 2,
                   repeatType: "mirror",
-                  delay: index * 0.045,
-                  ease: [0.22, 1, 0.36, 1]
+                  delay: index * 0.02,
+                  ease: "easeInOut"
                 }}
                 style={{ zIndex: deckCards.length - index }}
               >
@@ -115,16 +115,16 @@ export function ShuffleDeck() {
                 type="button"
                 onClick={drawCard}
                 disabled={!nextCard || selectedCount >= SELECTED_CARD_LIMIT}
-                whileHover={selectedCount < SELECTED_CARD_LIMIT ? { y: -4, scale: 1.015 } : undefined}
+                whileHover={selectedCount < SELECTED_CARD_LIMIT ? { y: -3, scale: 1.01 } : undefined}
                 whileTap={selectedCount < SELECTED_CARD_LIMIT ? { scale: 0.975 } : undefined}
-                className="group relative h-[13.2rem] w-[7.8rem] outline-none disabled:cursor-not-allowed sm:h-[26rem] sm:w-60"
+                className="group relative h-[11.9rem] w-[7rem] outline-none disabled:cursor-not-allowed sm:h-[23.4rem] sm:w-[13.5rem]"
                 aria-label="เลือกไพ่จากกอง"
               >
                 <span className="absolute -inset-5 rounded-full bg-clay/10 blur-3xl transition group-hover:bg-clay/15" />
                 {deckCards.map((_, index) => (
                   <motion.span
                     key={index}
-                    className="absolute inset-0 overflow-hidden rounded-[1.25rem] border border-white/80 bg-blush shadow-soft sm:rounded-[1.55rem]"
+                    className="absolute inset-0 overflow-hidden rounded-[1.12rem] border border-white/80 bg-blush sm:rounded-[1.4rem]"
                     initial={{ opacity: 0, y: 16, rotate: 0 }}
                     animate={{
                       opacity: selectedCount >= SELECTED_CARD_LIMIT && index < 3 ? 0 : 1,
@@ -132,7 +132,7 @@ export function ShuffleDeck() {
                       y: index * -1,
                       rotate: (index - 3.5) * 0.45
                     }}
-                    transition={{ type: "spring", stiffness: 180, damping: 24, delay: index * 0.018 }}
+                    transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1], delay: index * 0.01 }}
                     style={{ zIndex: deckCards.length - index }}
                   >
                     <Image src={withBasePath(CARD_BACK_IMAGE)} alt="" fill sizes="240px" className="object-contain" priority={index > 5} />
@@ -143,11 +143,11 @@ export function ShuffleDeck() {
                   {drawAnimationKey > 0 ? (
                     <motion.span
                       key={drawAnimationKey}
-                      className="absolute inset-0 overflow-hidden rounded-[1.25rem] border border-olive/40 bg-blush shadow-glow sm:rounded-[1.55rem]"
+                      className="absolute inset-0 overflow-hidden rounded-[1.12rem] border border-olive/40 bg-blush sm:rounded-[1.4rem]"
                       initial={{ opacity: 0, x: 0, y: 0, rotate: 0, scale: 1 }}
-                      animate={{ opacity: [0, 0.95, 0], x: [0, 38, 52], y: [0, -28, -14], rotate: [0, 5, 4], scale: [1, 0.9, 0.82] }}
+                      animate={{ opacity: [0, 0.9, 0], x: [0, 32, 44], y: [0, -22, -10], rotate: [0, 4, 3], scale: [1, 0.9, 0.84] }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
                       style={{ zIndex: deckCards.length + 1, pointerEvents: "none" }}
                     >
                       <Image src={withBasePath(CARD_BACK_IMAGE)} alt="" fill sizes="240px" className="object-contain" />
@@ -157,9 +157,9 @@ export function ShuffleDeck() {
               </motion.button>
             </div>
 
-            <div className="rounded-[1.5rem] border border-white/80 bg-pearl/75 p-3 shadow-soft sm:p-5">
+            <div className="rounded-[1.5rem] border border-white/80 bg-pearl/75 p-3 shadow-sm sm:p-5">
               <p className="text-center text-sm font-bold text-bark">ไพ่ที่เลือก ({selectedCount}/3)</p>
-              <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-4 sm:gap-4">
+              <div className="mx-auto mt-3 grid max-w-[13.5rem] grid-cols-3 gap-1.5 sm:mt-4 sm:max-w-none sm:gap-3">
                 {Array.from({ length: SELECTED_CARD_LIMIT }).map((_, index) => {
                   const isSelected = index < selectedCount;
 
@@ -172,7 +172,7 @@ export function ShuffleDeck() {
                         borderColor: isSelected ? "#66734d" : "rgba(185, 120, 95, 0.28)"
                       }}
                       transition={{ type: "spring", stiffness: 230, damping: 22 }}
-                      className="relative aspect-[11/19] overflow-hidden rounded-[0.9rem] border border-dashed bg-cream/50 shadow-sm"
+                      className="relative aspect-[11/19] overflow-hidden rounded-[0.75rem] border border-dashed bg-cream/50 sm:rounded-[0.9rem]"
                     >
                       {isSelected ? (
                         <>

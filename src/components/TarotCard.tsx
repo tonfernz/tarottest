@@ -11,6 +11,7 @@ type TarotCardProps = {
   selected?: boolean;
   disabled?: boolean;
   showName?: boolean;
+  labelMode?: "thai-en" | "english-only";
   index?: number;
   onClick?: () => void;
 };
@@ -21,6 +22,7 @@ export function TarotCard({
   selected = false,
   disabled = false,
   showName = false,
+  labelMode = "thai-en",
   index = 0,
   onClick
 }: TarotCardProps) {
@@ -73,8 +75,14 @@ export function TarotCard({
 
       {showName ? (
         <span className="min-h-10 text-center text-xs font-semibold leading-5 text-bark sm:min-h-12 sm:text-base sm:leading-6">
-          {card.name_th}
-          <span className="block text-xs font-normal text-bark/60">{card.name_en}</span>
+          {labelMode === "english-only" ? (
+            card.name_en
+          ) : (
+            <>
+              {card.name_th}
+              <span className="block text-xs font-normal text-bark/60">{card.name_en}</span>
+            </>
+          )}
         </span>
       ) : null}
     </motion.button>
