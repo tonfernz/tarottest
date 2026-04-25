@@ -65,14 +65,14 @@ export function CardDetailModal({ card, onClose }: CardDetailModalProps) {
               transition={{ duration: 0.32, delay: 0.08 }}
             >
               <div>
-                <div className="w-full pt-1">
+                <div className="w-full pt-3">
                   <div className="relative aspect-[11/19] overflow-hidden rounded-[1.05rem]">
                     <Image
                       src={withBasePath(card.image)}
                       alt={card.name_th}
                       fill
                       sizes="(max-width: 640px) 109px, 152px"
-                      className="object-contain"
+                      className="translate-y-2 scale-[0.96] object-contain"
                       priority
                     />
                   </div>
