@@ -46,7 +46,7 @@ export function CardDetailModal({ card, onClose }: CardDetailModalProps) {
             onClick={(event) => event.stopPropagation()}
             className="relative max-h-[88dvh] w-full max-w-4xl overflow-y-auto rounded-[1.8rem] border border-white/70 bg-pearl p-5 shadow-soft sm:p-7"
           >
-            <div className="sticky top-0 z-20 -mx-5 -mt-5 flex items-center justify-center bg-pearl/95 px-5 pb-3 pt-4 backdrop-blur sm:-mx-7 sm:-mt-7 sm:px-7">
+            <div className="sticky top-0 z-20 -mx-5 -mt-5 flex items-center justify-center border-b border-sand/35 bg-pearl px-5 pb-4 pt-4 shadow-[0_12px_24px_rgba(63,48,39,0.06)] sm:-mx-7 sm:-mt-7 sm:px-7">
               <span className="h-1 w-12 rounded-full bg-bark/20" />
               <button
                 type="button"
