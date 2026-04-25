@@ -14,11 +14,20 @@ export function SelectedCards({ selectedCount }: SelectedCardsProps) {
         const isFilled = index < selectedCount;
 
         return (
-          <motion.span
-            key={index}
-            animate={{ scale: isFilled ? 1.08 : 1, backgroundColor: isFilled ? "#7d8a62" : "#efe2d0" }}
-            className="h-2.5 w-10 rounded-full border border-white/70 shadow-sm"
-          />
+          <div key={index} className="flex items-center gap-3">
+            <motion.span
+              animate={{
+                scale: isFilled ? 1.08 : 1,
+                backgroundColor: isFilled ? "#66734d" : "#eee0ca",
+                color: isFilled ? "#fff8ef" : "#8a7662"
+              }}
+              transition={{ type: "spring", stiffness: 260, damping: 22 }}
+              className="grid h-7 w-7 place-items-center rounded-full border border-white/70 text-xs font-bold shadow-sm"
+            >
+              {index + 1}
+            </motion.span>
+            {index < SELECTED_CARD_LIMIT - 1 ? <span className="h-px w-6 bg-moss/45" /> : null}
+          </div>
         );
       })}
     </div>

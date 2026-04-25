@@ -7,6 +7,10 @@ const config: Config = {
       colors: {
         cream: "#f8f1e6",
         linen: "#efe2d0",
+        pearl: "#fff8ef",
+        blush: "#b98378",
+        rosewood: "#9c665f",
+        olive: "#66734d",
         clay: "#b9785f",
         moss: "#7d8a62",
         bark: "#5c4737",

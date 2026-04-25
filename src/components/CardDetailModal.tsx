@@ -7,10 +7,10 @@ import { withBasePath } from "@/lib/tarot";
 import type { TarotCardData } from "@/types/tarot";
 
 const meaningSections = [
-  { key: "work", label: "การงาน" },
-  { key: "money", label: "การเงิน" },
-  { key: "love", label: "ความรัก" },
-  { key: "health", label: "สุขภาพ" }
+  { key: "work", label: "การงาน", icon: "▣" },
+  { key: "money", label: "การเงิน", icon: "◇" },
+  { key: "love", label: "ความรัก", icon: "♡" },
+  { key: "health", label: "สุขภาพ", icon: "＋" }
 ] as const;
 
 type MeaningKey = (typeof meaningSections)[number]["key"];
@@ -28,99 +28,116 @@ export function CardDetailModal({ card, onClose }: CardDetailModalProps) {
     <AnimatePresence>
       {card ? (
         <motion.div
-          className="fixed inset-0 z-50 flex items-end justify-center bg-cacao/35 px-3 py-3 backdrop-blur-sm sm:items-center sm:px-4 sm:py-4"
+          className="fixed inset-0 z-50 flex items-end justify-center bg-cacao/45 px-0 backdrop-blur-sm sm:px-4 sm:py-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.28 }}
           onClick={onClose}
         >
-          <button
-            type="button"
-            onClick={onClose}
-            className="fixed right-5 top-5 z-[60] grid h-10 w-10 place-items-center text-3xl leading-none text-cream drop-shadow-lg transition hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-moss/30"
-            aria-label="ปิด"
-          >
-            ×
-          </button>
-
           <motion.section
             role="dialog"
             aria-modal="true"
             aria-labelledby="card-detail-title"
-            initial={{ opacity: 0, y: 34, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 26, scale: 0.98 }}
-            transition={{ duration: 0.28 }}
+            initial={{ opacity: 0, y: 80 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 48 }}
+            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
             onClick={(event) => event.stopPropagation()}
-            className="max-h-[92dvh] w-full max-w-4xl overflow-y-auto rounded-[1.35rem] border border-white/70 bg-cream p-4 shadow-soft sm:max-h-[88vh] sm:rounded-[1.5rem] sm:p-7"
+            className="relative max-h-[92dvh] w-full max-w-4xl overflow-y-auto rounded-t-[2rem] border border-white/70 bg-pearl p-5 shadow-soft sm:max-h-[88vh] sm:rounded-[1.8rem] sm:p-7"
           >
-            <div className="grid gap-4 md:grid-cols-[11rem_1fr] md:gap-6">
-              <motion.div
-                initial={{ opacity: 0, y: 16, rotate: -2 }}
-                animate={{ opacity: 1, y: 0, rotate: 0 }}
-                transition={{ duration: 0.36, delay: 0.04 }}
-                className="mx-auto w-28 sm:w-40 md:w-full"
+            <div className="sticky top-0 z-20 -mx-5 -mt-5 flex items-center justify-center bg-pearl/95 px-5 pb-3 pt-4 backdrop-blur sm:-mx-7 sm:-mt-7 sm:px-7">
+              <span className="h-1 w-12 rounded-full bg-bark/20" />
+              <button
+                type="button"
+                onClick={onClose}
+                className="absolute right-5 top-3 grid h-10 w-10 place-items-center text-3xl leading-none text-bark transition hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-moss/25"
+                aria-label="ปิด"
               >
-                <div className="relative aspect-[11/19] overflow-hidden rounded-[1rem] shadow-soft sm:rounded-[1.2rem]">
-                  <Image
-                    src={withBasePath(card.image)}
-                    alt={card.name_th}
-                    fill
-                    sizes="(max-width: 640px) 112px, (max-width: 768px) 160px, 176px"
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-              </motion.div>
+                ×
+              </button>
+            </div>
 
-              <div>
-                <div className="pr-10 sm:pr-0">
-                  <p className="text-xs font-semibold text-moss sm:text-sm">คำทำนายไพ่</p>
-                  <h2 id="card-detail-title" className="mt-1 text-xl font-bold text-cacao sm:text-3xl">
-                    {card.name_th}
-                  </h2>
-                  <p className="text-xs text-bark/60 sm:text-sm">{card.name_en}</p>
+            <motion.div
+              className="grid gap-5 md:grid-cols-[1fr_12rem] md:items-start md:gap-7"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.32, delay: 0.08 }}
+            >
+              <div className="md:order-2">
+                <div className="mx-auto w-32 sm:w-44 md:w-full">
+                  <div className="relative aspect-[11/19] overflow-hidden rounded-[1.15rem] shadow-soft">
+                    <Image
+                      src={withBasePath(card.image)}
+                      alt={card.name_th}
+                      fill
+                      sizes="(max-width: 640px) 128px, (max-width: 768px) 176px, 192px"
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
                 </div>
+              </div>
 
-                <div className="mt-3 flex flex-wrap gap-1.5 sm:mt-4 sm:gap-2">
+              <div className="md:order-1">
+                <p className="text-sm font-bold text-olive">🌿 คำทำนายไพ่</p>
+                <h2 id="card-detail-title" className="mt-2 text-2xl font-bold text-cacao sm:text-4xl">
+                  {card.name_th}
+                </h2>
+                <p className="mt-1 text-sm text-bark/60 sm:text-base">{card.name_en}</p>
+
+                <div className="mt-4 flex flex-wrap gap-2">
                   {card.keywords.slice(0, 5).map((keyword) => (
-                    <span key={keyword} className="rounded-full bg-sage/45 px-2.5 py-1 text-[11px] font-semibold text-bark sm:px-3 sm:text-xs">
+                    <span key={keyword} className="rounded-full bg-linen px-3 py-1.5 text-xs font-semibold text-bark/75">
                       {keyword}
                     </span>
                   ))}
                 </div>
-
-                <div className="mt-4 grid grid-cols-4 gap-1.5 rounded-full bg-linen/70 p-1 sm:mt-6 sm:gap-2">
-                  {meaningSections.map((section) => {
-                    const isActive = section.key === activeMeaning;
-
-                    return (
-                      <button
-                        key={section.key}
-                        type="button"
-                        onClick={() => setActiveMeaning(section.key)}
-                        className={`rounded-full px-2 py-2 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-moss/25 sm:text-sm ${
-                          isActive ? "bg-bark text-cream shadow-sm" : "text-bark/65 hover:bg-white/45 hover:text-bark"
-                        }`}
-                      >
-                        {section.label}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <motion.article
-                  key={activeMeaning}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.22 }}
-                  className="mt-4 rounded-[1.2rem] border border-white/75 bg-white/45 p-4 shadow-sm sm:mt-5 sm:p-5"
-                >
-                  <h3 className="text-base font-bold text-cacao sm:text-lg">{activeSection.label}</h3>
-                  <p className="mt-2 text-sm leading-7 text-bark/80 sm:text-base sm:leading-8">{card.meaning[activeSection.key]}</p>
-                </motion.article>
               </div>
+            </motion.div>
+
+            <div className="mt-5 grid grid-cols-4 gap-1 rounded-full border border-sand/60 bg-cream p-1 shadow-sm">
+              {meaningSections.map((section) => {
+                const isActive = section.key === activeMeaning;
+
+                return (
+                  <button
+                    key={section.key}
+                    type="button"
+                    onClick={() => setActiveMeaning(section.key)}
+                    className={`relative rounded-full px-2 py-2 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-moss/25 sm:text-sm ${
+                      isActive ? "text-cream" : "text-bark/70 hover:text-bark"
+                    }`}
+                  >
+                    {isActive ? (
+                      <motion.span
+                        layoutId="active-meaning-tab"
+                        className="absolute inset-0 rounded-full bg-olive shadow-sm"
+                        transition={{ type: "spring", stiffness: 260, damping: 28 }}
+                      />
+                    ) : null}
+                    <span className="relative z-10">{section.label}</span>
+                  </button>
+                );
+              })}
             </div>
+
+            <AnimatePresence mode="wait">
+              <motion.article
+                key={activeMeaning}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-4 rounded-[1.35rem] border border-white/80 bg-white/50 p-5 shadow-soft"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-sand/55 text-sm font-bold text-olive">{activeSection.icon}</span>
+                  <h3 className="text-xl font-bold text-cacao">{activeSection.label}</h3>
+                </div>
+                <p className="mt-4 text-base leading-8 text-bark/80">{card.meaning[activeSection.key]}</p>
+              </motion.article>
+            </AnimatePresence>
           </motion.section>
         </motion.div>
       ) : null}
